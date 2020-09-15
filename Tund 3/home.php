@@ -3,7 +3,7 @@
    require("../../../config.php");
    $database = "if20_liisa_mi_1";
    //kui on idee sisestatud ja nuppu vajutatud, salvestame selle andmebassi
-   if(isset($_POST["ideasubmit"]) and !empty($_POST["ideasubmit"])){
+   if(isset($_POST["ideasubmit"]) and !empty($_POST["ideainput"])){
 	   $conn = new mysqli($serverhost, $serverusername, $serverpassword, $database);
 	   //valmistan ette SQL käsu
 	   $stmt = $conn->prepare("INSERT INTO myideas (idea) VALUES(?)");
