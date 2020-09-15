@@ -1,4 +1,36 @@
 <?php
+   //var_dump($_POST);
+   require("../../../config.php");
+   $database = "if20_liisa_mi_1";
+   //kui on idee sisestatud ja nuppu vajutatud, salvestame selle andmebassi
+   if(isset($_POST["ideasubmit"]) and !empty($_POST["ideasubmit"])){
+	   $conn = new mysqli($serverhost, $serverusername, $serverpassword, $database);
+	   //valmistan ette SQL käsu
+	   $stmt = $conn->prepare("INSERT INTO myideas (idea) VALUES(?)");
+	   echo $conn->error;
+	   //seome käsuga pärisandmed
+	   //i - integer, d - decimal, s - string
+	   $stmt->bind_param("s", $_POST["ideainput"]);
+	   $stmt->execute();
+	   $stmt->close();
+	   $conn->close();
+   }
+   
+   //loen lehele kõik olemasolevad mõtted
+   $conn = new mysqli($serverhost, $serverusername, $serverpassword, $database);
+   $stmt = $conn->prepare("SELECT idea FROM myideas");
+   echo $conn->error;
+   //seome tulemuse muutujaga
+   $stmt->bind_result($ideafromdb);
+   $stmt->execute();
+   $ideahtml = "";
+   while($stmt->fetch()){
+	   $ideahtml .= "<p>" .$ideafromdb ."</p>";
+   }
+   $stmt->close();
+   $conn->close();
+   
+   
    $username = "Liisa Mikola";
    $fulltimenow = date("d.m.Y H:i:s");
    $hournow = date("H");
@@ -76,16 +108,8 @@
 	   $imghtml .= '<img src="../vp_pics/' .$picfiles[$i] .'" ';
 	   $imghtml .= 'alt="Tallinna Ülikool">';
    }
-   
+   require("header.php");
 ?>
-<!DOCTYPE html>
-<html lang="et">
-<head>
-  <meta charset="utf-8">  
-  <title><?php echo $username; ?> programmeerib veebi</title>
-  
-</head>
-<body>
   <img src="../img/vp_banner.png" alt="Veebiprogrammeerimise kursuse bänner">
   <h1><?php echo $username; ?></h1>
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
@@ -98,5 +122,13 @@
   <p><?php echo "Semestrist on läbitud " .$percentage ." protsenti."; ?></p>
   <hr>
   <?php echo $imghtml; ?>
+  <hr>
+  <form method="POST">
+	<label>Sisesta oma pähe tulnud mõte!</label>
+	<input type="text" name="ideainput" placeholder="Kirjuta siia mõte!">
+	<input type="submit" name="ideasubmit" value="Saada mõte ära!">
+  </form>
+  <hr>
+  <?php echo $ideahtml; ?>
 </body>
 </html>
