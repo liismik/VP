@@ -17,22 +17,26 @@
    }
    
    //loen lehele kõik olemasolevad mõtted
-   $conn = new mysqli($serverhost, $serverusername, $serverpassword, $database);
-   $stmt = $conn->prepare("SELECT idea FROM myideas");
-   echo $conn->error;
+   // $conn = new mysqli($serverhost, $serverusername, $serverpassword, $database);
+   // $stmt = $conn->prepare("SELECT idea FROM myideas");
+   // echo $conn->error;
    //seome tulemuse muutujaga
-   $stmt->bind_result($ideafromdb);
-   $stmt->execute();
-   $ideahtml = "";
-   while($stmt->fetch()){
-	   $ideahtml .= "<p>" .$ideafromdb ."</p>";
-   }
-   $stmt->close();
-   $conn->close();
+   // $stmt->bind_result($ideafromdb);
+   // $stmt->execute();
+   // $ideahtml = "";
+   // while($stmt->fetch()){
+	   // $ideahtml .= "<p>" .$ideafromdb ."</p>";
+   // }
+   // $stmt->close();
+   // $conn->close();
    
    
    $username = "Liisa Mikola";
    $fulltimenow = date("d.m.Y H:i:s");
+   $datenow = date("d");
+   $monthnow = date("m");
+   $yearnow = date("Y");
+   $timenow = date("H:i:s");
    $hournow = date("H");
    $partofday = "lihtsalt aeg";
    $weekdaynameset = ["esmaspäev", "teisipäev", "kolmapäev", "neljapäev", "reede", "laupäev", "pühapäev"];
@@ -97,24 +101,34 @@
 	   }
    }
    
-   //paneme kõik pildid ekraanile
+   
+      //paneme kõik pildid ekraanile/1 pilt ekraanil
    $piccount = count($picfiles);
+   $picnum = mt_rand(0, ($piccount - 1));
    //$i = $i + 1;
    //$i ++;
    //$i += 2;
    $imghtml = "";
    //<img src="../vp_pics/failinimi.png" alt="tekst">
-   for($i = 0; $i < $piccount; $i ++){
-	   $imghtml .= '<img src="../vp_pics/' .$picfiles[$i] .'" ';
+   for($i = 0; $i < $piccount - 3; $i++){
+	   $imghtml .= '<img src="../vp_pics/' .$picfiles[$picnum] .'" ';
 	   $imghtml .= 'alt="Tallinna Ülikool">';
    }
    require("header.php");
 ?>
+<!DOCTYPE html>
+<html lang="et">
+<head>
+  <meta charset="utf-8">  
+  <title><?php echo $username; ?> programmeerib veebi</title>
+  
+</head>
+<body>
   <img src="../img/vp_banner.png" alt="Veebiprogrammeerimise kursuse bänner">
   <h1><?php echo $username; ?></h1>
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <p>See konkreetne leht on loodud veebiprogrammeerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate Instituudis.</p>
-  <p>Lehe avamise hetk: <?php echo $weekdaynameset[$weekdaynow -1] .", " .$fulltimenow; ?>.</p>
+  <p>Lehe avamise hetk: <?php echo $weekdaynameset[$weekdaynow -1] .", " .$datenow .". " .$monthnameset[$monthnow -1] ." " .$yearnow ." ".$timenow; ?>.</p>
   <p><?php echo "Praegu on " .$partofday ."."; ?></p>
   <p><?php echo "Semestri pikkus on " .$semesterdurationdays ." päeva."; ?></p>
   <p><?php echo "Semestri algusest on möödunud " .$sincesemesterstartdays ." päeva."; ?></p>
@@ -123,12 +137,8 @@
   <hr>
   <?php echo $imghtml; ?>
   <hr>
-  <form method="POST">
-	<label>Sisesta oma pähe tulnud mõte!</label>
-	<input type="text" name="ideainput" placeholder="Kirjuta siia mõte!">
-	<input type="submit" name="ideasubmit" value="Saada mõte ära!">
-  </form>
+  <button><a href="motete_sisestamine.php">Mõtete sisestamise leht</a></button>
+  <button><a href="motted.php">Mõtted</a></button>
   <hr>
-  <?php echo $ideahtml; ?>
 </body>
 </html>
