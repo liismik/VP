@@ -129,7 +129,7 @@
   <hr>
   <li><button><a href="addideas.php">Mõtete sisestamise leht</a></button></li>
   <li><button><a href="listideas.php">Mõtted</a></button></li>
-  <li><button><a href="filmlist.php">Loe filmiinfot</a></li>
+  <li><button><a href="listfilms.php">Loe filmiinfot</a></li>
   <li><button><a href="addfilms.php">Lisa filme</a></li>
   <li><button><a href="userprofile.php">Minu kasutajaprofiil</a></li>
   <hr>
