@@ -1,6 +1,23 @@
 <?php
 
    session_start();
+   
+   //kas on sisse loginud
+   if(!isset($_SESSION["userid"])){
+	   //suunatakse sunniviisiliselt sisselogimise lehele
+	   header("Location: page.php");
+	   exit();
+	}
+	
+	//logime välja
+	if(isset($_GET["logout"])){
+		//hävitame sessiooni
+		session_destroy();
+		//suunatakse sunniviisiliselt sisselogimise lehele
+	    header("Location: page.php");
+	    exit();
+	}
+		
    //var_dump($_POST);
    //kui on idee sisestatud ja nuppu vajutatud, salvestame selle andmebassi
    if(isset($_POST["ideasubmit"]) and !empty($_POST["ideainput"])){
@@ -107,6 +124,8 @@
   <h1><?php echo $_SESSION["userfirstname"] ." " .$_SESSION["userlastname"]; ?></h1>
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <p>See konkreetne leht on loodud veebiprogrammeerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate Instituudis.</p>
+  <hr>
+  <button><a href="?logout=1">Logi välja</a>!</button>
   <hr>
   <li><button><a href="motete_sisestamine.php">Mõtete sisestamise leht</a></button></li>
   <li><button><a href="motted.php">Mõtted</a></button></li>
