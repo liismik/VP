@@ -1,6 +1,5 @@
 <?php
 
-   $username = "Liisa Mikola";
    require("../../../config.php");
    require("fnc_films.php");
    require("session_start.php");
@@ -30,7 +29,7 @@
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <p>See konkreetne leht on loodud veebiprogrammeerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate Instituudis.</p>
   <hr>
-  <form method="POST">
+  <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	<label for="titleinput">Filmi pealkiri</label>
 	<input type ="text" name="titleinput" id="titleinput"
 	placeholder="Pealkiri">
