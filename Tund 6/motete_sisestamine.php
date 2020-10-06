@@ -19,6 +19,8 @@
 	   $stmt->close();
 	   $conn->close();
    }
+   require("header.php");
+   
 ?>
 <html lang="et">
  <body>

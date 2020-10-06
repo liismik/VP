@@ -20,6 +20,8 @@
    }
    $stmt->close();
    $conn->close();
+   
+   require("header.php");
 ?>
 <!DOCTYPE html>
 <html>
