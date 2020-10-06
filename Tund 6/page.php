@@ -1,20 +1,10 @@
 <?php
-   //var_dump($_POST);
-   //kui on idee sisestatud ja nuppu vajutatud, salvestame selle andmebassi
-   if(isset($_POST["ideasubmit"]) and !empty($_POST["ideainput"])){
-	   $conn = new mysqli($GLOBALS["serverhost"], $GLOBALS["serverusername"], $GLOBALS["serverpassword"], $GLOBALS["database"]);
-	   //valmistan ette SQL käsu
-	   $stmt = $conn->prepare("INSERT INTO myideas (idea) VALUES(?)");
-	   echo $conn->error;
-	   //seome käsuga pärisandmed
-	   //i - integer, d - decimal, s - string
-	   $stmt->bind_param("s", $_POST["ideainput"]);
-	   $stmt->execute();
-	   $stmt->close();
-	   $conn->close();
-   }
+   //algatan sessiooni
+   session_start();
+   require("../../../config.php");
+   require("../../../fnc_common.php");
+   require("../../../fnc_user.php");
 
-   $username = "Liisa Mikola";
    $fulltimenow = date("d.m.Y H:i:s");
    $datenow = date("d");
    $monthnow = date("m");
@@ -29,6 +19,41 @@
    $weekdaynow = date("N");
    //echo $weekdaynow;
    
+   $email = "";
+   
+   $emailerror = "";
+   $passworderror = "";
+   
+   $notice = "";
+   
+   if(isset($_POST["submituserdata"])){
+	   
+	   if(!empty($_POST["emailinput"])){
+		   $email = filter_var($_POST["emailinput"], FILTER_SANITIZE_EMAIL);
+		   if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+			   $email = filter_var($email, FILTER_VALIDATE_EMAIL);
+	   } else {
+		   $emailerror = "Palun sisesta e-posti aadress!";
+	   }
+	   }
+	   if(empty($_POST["passwordinput"])){
+		   $passworderror = "Palun sisesta salasõna!";
+	   } else {
+		   if(strlen($_POST["passwordinput"]) < 8){
+			   $passworderror = "Liiga lühike salasõna (sisestasite ainult " .strlen($_POST["passwordinput"]) ." märki).";
+		   }
+	   }
+		   
+		   if(empty($emailerror) and empty($passworderror)){
+			   $result = signin($email, $_POST["passwordinput"]);
+				if($result == "Ok"){
+					$email = "";
+					$notice - "Sisselogimine õnnestus!";
+				} else {
+					$notice = "Tekkis tehniline viga: " .$result;
+				}
+		   }
+   }
    
    if($hournow >= 0 and $hournow <= 5){
 			$partofday = "uneaeg";
@@ -97,18 +122,14 @@
 	   $imghtml .= '<img src="../vp_pics/' .$picfiles[$picnum] .'" ';
 	   $imghtml .= 'alt="Tallinna Ülikool">';
    }
-   require("header.php");
+   
+  require("header.php");
+  
 ?>
 <!DOCTYPE html>
 <html lang="et">
-<head>
-  <meta charset="utf-8">  
-  <title><?php echo $username; ?> programmeerib veebi</title>
-  
-</head>
 <body>
   <img src="../img/vp_banner.png" alt="Veebiprogrammeerimise kursuse bänner">
-  <h1><?php echo $username; ?></h1>
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <p>See konkreetne leht on loodud veebiprogrammeerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate Instituudis.</p>
   <p>Lehe avamise hetk: <?php echo $weekdaynameset[$weekdaynow -1] .", " .$datenow .". " .$monthnameset[$monthnow -1] ." " .$yearnow ." ".$timenow; ?>.</p>
@@ -120,10 +141,17 @@
   <hr>
   <?php echo $imghtml; ?>
   <hr>
-  <li><button><a href="motete_sisestamine.php">Mõtete sisestamise leht</a></button></li>
-  <li><button><a href="motted.php">Mõtted</a></button></li>
-  <li><button><a href="filmlist.php">Loe filmiinfot</a></li>
-  <li><button><a href="addfilms.php">Lisa filme</a></li>
+  <form method="POST">
+	<label for="emailinput">E-mail(kasutajatunnus):</label><br>
+	<input type="email" name="emailinput" id="emailinput" value="<?php echo $email; ?>"><span style="color:#FF0000;"><?php echo $emailerror; ?></span>
+	 <br>
+	 <label for="passwordinput">Salasõna (min 8 tähemärki):</label>
+	 <br>
+	 <input name="passwordinput" id="passwordinput" type="password"><span style="color:#FF0000;"><?php echo $passworderror; ?></span>
+	 <br>
+	 <input name="submituserdata" type="submit" value="Logi sisse"><span style="color:#FF0000;"><?php echo "&nbsp; &nbsp; &nbsp;" .$notice; ?></span>
+	 <hr>
+	 </form>
   <li><button><a href="adduser5.php">Lisa uus kasutaja</a></li>
   <hr>
 </body>

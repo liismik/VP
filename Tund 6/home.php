@@ -1,4 +1,6 @@
 <?php
+
+   session_start();
    //var_dump($_POST);
    //kui on idee sisestatud ja nuppu vajutatud, salvestame selle andmebassi
    if(isset($_POST["ideasubmit"]) and !empty($_POST["ideainput"])){
@@ -14,7 +16,7 @@
 	   $conn->close();
    }
 
-   $username = "Liisa Mikola";
+   //$username = "Liisa Mikola";
    $fulltimenow = date("d.m.Y H:i:s");
    $datenow = date("d");
    $monthnow = date("m");
@@ -100,31 +102,16 @@
    require("header.php");
 ?>
 <!DOCTYPE html>
-<html lang="et">
-<head>
-  <meta charset="utf-8">  
-  <title><?php echo $username; ?> programmeerib veebi</title>
-  
-</head>
 <body>
   <img src="../img/vp_banner.png" alt="Veebiprogrammeerimise kursuse bänner">
-  <h1><?php echo $username; ?></h1>
+  <h1><?php echo $_SESSION["userfirstname"] ." " .$_SESSION["userlastname"]; ?></h1>
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <p>See konkreetne leht on loodud veebiprogrammeerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate Instituudis.</p>
-  <p>Lehe avamise hetk: <?php echo $weekdaynameset[$weekdaynow -1] .", " .$datenow .". " .$monthnameset[$monthnow -1] ." " .$yearnow ." ".$timenow; ?>.</p>
-  <p><?php echo "Praegu on " .$partofday ."."; ?></p>
-  <p><?php echo "Semestri pikkus on " .$semesterdurationdays ." päeva."; ?></p>
-  <p><?php echo "Semestri algusest on möödunud " .$sincesemesterstartdays ." päeva."; ?></p>
-  <p><?php echo "Semester " .$semesterstatus ."."; ?></p>
-  <p><?php echo "Semestrist on läbitud " .$percentage ." protsenti."; ?></p>
-  <hr>
-  <?php echo $imghtml; ?>
   <hr>
   <li><button><a href="motete_sisestamine.php">Mõtete sisestamise leht</a></button></li>
   <li><button><a href="motted.php">Mõtted</a></button></li>
   <li><button><a href="filmlist.php">Loe filmiinfot</a></li>
   <li><button><a href="addfilms.php">Lisa filme</a></li>
-  <li><button><a href="adduser5.php">Lisa uus kasutaja</a></li>
   <hr>
 </body>
 </html>
