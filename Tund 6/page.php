@@ -152,7 +152,7 @@
 	 <input name="submituserdata" type="submit" value="Logi sisse"><span style="color:#FF0000;"><?php echo "&nbsp; &nbsp; &nbsp;" .$notice; ?></span>
 	 <hr>
 	 </form>
-  <li><button><a href="adduser5.php">Lisa uus kasutaja</a></li>
+  <li><button><a href="addnewuser.php">Lisa uus kasutaja</a></li>
   <hr>
 </body>
 </html>
