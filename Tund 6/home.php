@@ -132,6 +132,7 @@
   <li><button><a href="listfilms.php">Loe filmiinfot</a></li>
   <li><button><a href="addfilms.php">Lisa filme</a></li>
   <li><button><a href="userprofile.php">Minu kasutajaprofiil</a></li>
+  <li><button><a href="filmconns.php">Filmiseosed</a></li>
   <hr>
 </body>
 </html>

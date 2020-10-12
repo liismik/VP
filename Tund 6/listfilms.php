@@ -1,6 +1,5 @@
 <?php
 
-	$username = "Liisa Mikola";
    require("../../../config.php");
    require("fnc_films.php");
    require("session_start.php");
