@@ -27,8 +27,9 @@
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <p>See konkreetne leht on loodud veebiprogrammeerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate Instituudis.</p>
   <hr>
+  <h1>Minu profiil</h1>
    <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-    <label for="descriptioninput">Minu lühikirjeldus</label>
+    <label for="descriptioninput">Minu lühikirjeldus:</label>
 	<br>
 	<textarea rows="10" cols="80" name="descriptioninput" id="descriptioninput" placeholder="Minu lühikirjeldus ..."><?php echo $userdescription; ?></textarea>
 	<br>
@@ -42,6 +43,7 @@
 	<input type="submit" name="profilesubmit" value="Salvesta profiil">
   </form>
   <p><?php echo $notice; ?></p>
+  <hr>
   <button><a href="home.php">Tagasi avalehele</button>
   <hr>
   <button><a href="?logout=1">Logi välja</a>!</button>

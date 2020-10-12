@@ -37,8 +37,7 @@
 	<p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
 	<p>See konkreetne leht on loodud veebiprogrammeerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate Instituudis.</p>
 	<hr>
-	  <h2>Määrame filmile žanri</h2>
-	  <hr>
+	  <h1>Määrame filmile žanri:</h1>
 	  <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 		<?php
 			echo $filmselecthtml;
@@ -49,6 +48,8 @@
 	  </form>
 	 <hr>
 	<li><button><a href="home.php">Tagasi avalehele</a></button></li>
+	<hr>
 	<li><button><a href="?logout=1">Logi välja</a></button></li>
+	<hr>
  </body>
 </html>

@@ -31,6 +31,7 @@
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <p>See konkreetne leht on loodud veebiprogrammeerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate Instituudis.</p>
   <hr>
+  <h1>Mõtted:</h1>
   <?php echo $ideahtml; ?>
   <hr>
   <button><a href="home.php">Tagasi avalehele</button>

@@ -32,6 +32,8 @@
    $conn->close();
    
    require ("header.php");
+   //  <?php echo readfilms();  html'ist
+   
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,8 +44,6 @@
   <p>See konkreetne leht on loodud veebiprogrammeerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate Instituudis.</p>
   <hr>
   <h1>Filmi list:</h1>
-  <hr>
-  <?phhp echo readfilms(); ?>
   <?php echo $filmhtml; ?>
   <hr>
   <button><a href="home.php">Tagasi avalehele</button>

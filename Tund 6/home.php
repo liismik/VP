@@ -125,14 +125,14 @@
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <p>See konkreetne leht on loodud veebiprogrammeerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate Instituudis.</p>
   <hr>
-  <button><a href="?logout=1">Logi välja</a>!</button>
-  <hr>
   <li><button><a href="addideas.php">Mõtete sisestamise leht</a></button></li>
   <li><button><a href="listideas.php">Mõtted</a></button></li>
   <li><button><a href="listfilms.php">Loe filmiinfot</a></li>
   <li><button><a href="addfilms.php">Lisa filme</a></li>
   <li><button><a href="userprofile.php">Minu kasutajaprofiil</a></li>
   <li><button><a href="filmconns.php">Filmiseosed</a></li>
+  <hr>
+  <button><a href="?logout=1">Logi välja</a></button>
   <hr>
 </body>
 </html>

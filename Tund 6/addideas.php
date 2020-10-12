@@ -29,6 +29,7 @@
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <p>See konkreetne leht on loodud veebiprogrammeerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate Instituudis.</p>
   <hr>
+  <h1>Lisa mõte:</h1>
    <form method="POST">
 	<input type="text" name="ideainput" placeholder="Kirjuta siia mõte!">
 	<input type="submit" name="ideasubmit" value="Saada mõte ära!">

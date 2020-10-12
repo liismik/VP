@@ -1,4 +1,4 @@
-<?php
+ <?php
 
    require("../../../config.php");
    require("fnc_films.php");
@@ -29,6 +29,7 @@
   <p>See veebileht on loodud õppetöö käigus ning ei sisalda mingit tõsiseltvõetavat sisu!</p>
   <p>See konkreetne leht on loodud veebiprogrammeerimise kursusel aasta 2020 sügissemestril <a href="https://www.tlu.ee">Tallinna Ülikooli</a> Digitehnoloogiate Instituudis.</p>
   <hr>
+  <h1>Lisa film:</h1>
   <form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 	<label for="titleinput">Filmi pealkiri</label>
 	<input type ="text" name="titleinput" id="titleinput"
@@ -56,6 +57,7 @@
 	<input type="submit" name="filmsubmit" value="Salvesta filmi info">
   </form>
   <p><?php echo $inputerror; ?></p>
+  <hr>
   <button><a href="home.php">Tagasi avalehele</button>
   <hr>
   <button><a href="?logout=1">Logi välja</a>!</button>

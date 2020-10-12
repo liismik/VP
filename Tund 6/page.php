@@ -141,6 +141,7 @@
   <hr>
   <?php echo $imghtml; ?>
   <hr>
+  <h3>Logi sisse:</h3>
   <form method="POST">
 	<label for="emailinput">E-mail(kasutajatunnus):</label><br>
 	<input type="email" name="emailinput" id="emailinput" value="<?php echo $email; ?>"><span style="color:#FF0000;"><?php echo $emailerror; ?></span>
@@ -152,7 +153,7 @@
 	 <input name="submituserdata" type="submit" value="Logi sisse"><span style="color:#FF0000;"><?php echo "&nbsp; &nbsp; &nbsp;" .$notice; ?></span>
 	 <hr>
 	 </form>
-  <li><button><a href="addnewuser.php">Lisa uus kasutaja</a></li>
+	<li><button><a href="addnewuser.php">Lisa uus kasutaja</a></button></li>
   <hr>
 </body>
 </html>
