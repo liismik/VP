@@ -4,6 +4,7 @@
 	require("../../../config.php");
 	require("fnc_filmrelations.php");
   
+    $notice = "";
 	$genrenotice = "";
 	$selectedfilm = "";
 	$selectedgenre = "";
